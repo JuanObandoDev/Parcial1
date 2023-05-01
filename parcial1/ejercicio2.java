@@ -10,57 +10,57 @@ import java.util.Scanner;
 class ejercicio2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        double[] notas1 = new double[5];
-        double[] notas2 = new double[5];
-        double[] promedio = new double[5];
+        // create constant for the number of students
+        final int NUM_ESTUDIANTES = 5;
+        // create arrays for the notes and the average of each student
+        double[] notas1 = new double[NUM_ESTUDIANTES];
+        double[] notas2 = new double[NUM_ESTUDIANTES];
+        double[] promedio = new double[NUM_ESTUDIANTES];
 
-        // recorrido de los 5 estudiantes
-        for (int i = 0; i < notas1.length; i++) {
-            // recorrido de las 2 notas de cada estudiante
+        // for each student
+        for (int i = 0; i < NUM_ESTUDIANTES; i++) {
+            // for each note
             for (int j = 0; j < 2; j++) {
+                // ask for the note
                 System.out.println("Type the note #" + (j + 1) + " to the student #" + (i + 1));
+                // store the note in nota variable
                 double nota = input.nextDouble();
-                // si la nota esta entre 0 y 5, la agrega al array
+                // if the note is between 0 and 5 store it in the array
                 if (nota <= 5 && nota >= 0) {
-                    // dependiendo del contador, se agrega la nota al array de notas1 o notas2
                     switch (j) {
-                        case 0:
-                            notas1[i] = nota;
-                            break;
-                        case 1:
-                            notas2[i] = nota;
-                            break;
+                        // if j is 0 store the note in notas1 array
+                        case 0 -> notas1[i] = nota;
+                        // if j is 1 store the note in notas2 array
+                        case 1 -> notas2[i] = nota;
                     }
-                } else {
-                    // sino, se resta 1 al contador para que el usuario pueda ingresar la nota de
-                    // nuevo
+                } else { // if the note is not between 0 and 5 send advertisement and repeat the note
                     System.out.println("enter values between 0 and 5");
                     j--;
                 }
             }
         }
 
-        // recorrido de los 5 estudiantes
-        for (int i = 0; i < notas1.length; i++) {
+        // for each student
+        for (int i = 0; i < NUM_ESTUDIANTES; i++) {
+            // calculate the average of the notes
             double prom = 0;
-            // recorrido de las 2 notas de cada estudiante
+            // for each note
             for (int j = 0; j < 2; j++) {
-                // dependiendo del contador, se suma la nota 1 o nota 2 al promedio
+                // add the note to the prom variable
                 switch (j) {
-                    case 0:
-                        prom += notas1[i];
-                        break;
-                    case 1:
-                        prom += notas2[i];
-                        break;
+                    // if j is 0 add the note in notas1 array
+                    case 0 -> prom += notas1[i];
+                    // if j is 1 add the note in notas2 array
+                    case 1 -> prom += notas2[i];
                 }
             }
-            // se divide el promedio entre 2 y se agrega al array de promedio
+            // divide the sum of the notes by 2 and store it in the promedio array
             promedio[i] = prom / 2;
         }
-        // se imprimen los arrays
-        System.out.println(Arrays.toString(notas1));
-        System.out.println(Arrays.toString(notas2));
-        System.out.println(Arrays.toString(promedio));
+
+        // print the notes and the average of all students
+        System.out.println("Notas 1: " + Arrays.toString(notas1));
+        System.out.println("Notas 2: " + Arrays.toString(notas2));
+        System.out.println("Promedio: " + Arrays.toString(promedio));
     }
 }
