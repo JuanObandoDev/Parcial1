@@ -8,42 +8,50 @@ import java.util.Random;
 
 class exercise1 {
     public static void main(String args[]) {
-        // create arrays
-        int[] nums = new int[100];
-        String[] roman = new String[100];
-        // create instance of Random class
+        // create constants for the number of numbers, the minimum number and the
+        // maximum number
+        final int NUM_COUNT = 100;
+        final int MIN_NUM = 1;
+        final int MAX_NUM = 4000;
+        // create a constant for the header of the table
+        final String HEADER = "Position       Number          Roman\n------------------------------------";
+
+        // create arrays for the numbers and the roman numerals
+        int[] nums = new int[NUM_COUNT];
+        String[] roman = new String[NUM_COUNT];
+        // create a random object
         Random aleatorio = new Random();
-        // generate 100 random numbers between 1 and 4000 and show them on the screen
-        for (int i = 0; i < nums.length; i++) {
-            // print table header
-            System.out.println((i == 0) ? "Position       Number          Roman" : "");
-            System.out.println((i == 0) ? "------------------------------------" : "");
-            // generate random number
-            nums[i] = aleatorio.nextInt((4000 - 1) + 1) + 1;
-            // get roman number from random number
+
+        // print the header
+        System.out.println(HEADER);
+        // for each number
+        for (int i = 0; i < NUM_COUNT; i++) {
+            // generate a random number between 1 and 4000
+            nums[i] = aleatorio.nextInt(MAX_NUM - MIN_NUM + 1) + MIN_NUM;
+            // store the roman numeral in the roman array
             roman[i] = romanNumber(nums[i]);
-            // print table content (position, number, roman number)
-            System.out.println("/   " + (i + 1) + ".     /   " + nums[i] + "    /   " + roman[i] + " /");
+            // print the number, the position and the roman numeral
+            System.out.printf("    %d           %d            %s", i + 1, nums[i], roman[i] + "\n");
         }
     }
 
     public static String romanNumber(int num) {
-        // create variable to store roman number
+        // create a string for the roman numeral
         String roman = "";
-        // create arrays with roman letters and their corresponding numbers
+        // create arrays for the letters and the numbers of the roman numerals
         String[] letters = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
         int[] numbers = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-        // iterate over arrays
+        // for each number
         for (int i = 0; i < numbers.length; i++) {
-            // while number is greater than or equal to the current number in the array
+            // while the number is greater than the number of the roman numeral
             while (num >= numbers[i]) {
-                // add the corresponding letter to the roman number
+                // add the roman numeral letter to the roman string
                 roman += letters[i];
-                // subtract the current number from the number
+                // subtract the number of the roman numeral to the number
                 num -= numbers[i];
             }
         }
-        // return roman number
+        // return the roman numeral string
         return roman;
     }
 }
