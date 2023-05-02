@@ -4,12 +4,16 @@ import java.util.Random;
 
 public class exercise4 {
     public static void main(String[] args) {
+        final int MAX_NUMS = 100;
+        final String HEADER = "|\tPosition\t|  Number\t|  Roman\t|  Fibonacci?\t|\n|-----------------------------------------------------------------------|";
+        final int MAX = 4000;
+        final int MIN = 1;
         // create instance of Random class
         Random aleatorio = new Random();
         // create arrays
-        String[] fibonacci = new String[100];
-        int[] randNumbers = new int[100];
-        String[] roman = new String[100];
+        String[] fibonacci = new String[MAX_NUMS];
+        int[] randNumbers = new int[MAX_NUMS];
+        String[] roman = new String[MAX_NUMS];
         // fill fibonacci array with No
         for (int i = 0; i < fibonacci.length; i++) {
             fibonacci[i] = "No";
@@ -18,7 +22,7 @@ public class exercise4 {
         // randNumbers array
         for (int i = 0; i < fibonacci.length; i++) {
             // generate random number and add it to the randNumbers array
-            randNumbers[i] = aleatorio.nextInt((4000 - 1) + 1) + 1;
+            randNumbers[i] = aleatorio.nextInt(MAX - MIN + 1) + MIN;
             // generate fibonacci sequence until the number is greater than the random
             // number
             for (int j = 0; fibonacciSequence(j) <= randNumbers[i]; j++) {
@@ -29,16 +33,15 @@ public class exercise4 {
                 }
             }
         }
+        // print table header
+        System.out.println(HEADER);
         for (int i = 0; i < fibonacci.length; i++) {
-            // print table header
-            System.out.println((i == 0) ? "Position       Number          Roman         Fibonacci?" : "");
-            System.out.println((i == 0) ? "-------------------------------------------------------" : "");
             // get roman number from random number
             roman[i] = romanNumber(randNumbers[i]);
             // print table content (position, number, roman number, fibonacci number?)
-            System.out.println("/   " + (i + 1) + ".      /   " + randNumbers[i] + "      /   " + roman[i]
-                    + "    /   " + fibonacci[i] + " /");
+            System.out.printf("|\t#%d\t\t|  %d\t\t|  %s\t|  %s\n", i + 1, randNumbers[i], roman[i], fibonacci[i]);
         }
+        System.out.println("|-----------------------------------------------------------------------|");
     }
 
     public static long fibonacciSequence(int number) {
