@@ -14,7 +14,7 @@ class exercise1 {
         final int MIN_NUM = 1;
         final int MAX_NUM = 4000;
         // create a constant for the header of the table
-        final String HEADER = "Position       Number          Roman\n------------------------------------";
+        final String HEADER = "|\tPosition\t|  Number\t|  Roman\t|\n|-------------------------------------------------------|";
 
         // create arrays for the numbers and the roman numerals
         int[] nums = new int[NUM_COUNT];
@@ -31,8 +31,9 @@ class exercise1 {
             // store the roman numeral in the roman array
             roman[i] = romanNumber(nums[i]);
             // print the number, the position and the roman numeral
-            System.out.printf("    %d           %d            %s", i + 1, nums[i], roman[i] + "\n");
+            System.out.printf("|\t#%d\t\t|  %d\t\t|  %s\n", i + 1, nums[i], roman[i]);
         }
+        System.out.println("|-------------------------------------------------------|");
     }
 
     public static String romanNumber(int num) {
