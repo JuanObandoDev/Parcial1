@@ -10,7 +10,9 @@ class exercise2 {
     public static void main(String args[]) {
         // create constants
         final int FIBONACCI_SIZE = 100;
-        final String HEADER = "Position       Number          Binary\n------------------------------------";
+        final String HEADER = "|\tPosition\t|  Number\t|  Binary\t|\n|-------------------------------------------------------|";
+        final int MAX = 10000;
+        final int MIN = 0;
 
         // create variables and arrays
         Random aleatorio = new Random();
@@ -25,7 +27,7 @@ class exercise2 {
         // fill the fibonacci array with random numbers
         for (int i = 0; i < fibonacci.length; i++) {
             // generate a random number between 0 and 10000
-            int randNumber = aleatorio.nextInt((10000 - 0 + 1) + 0);
+            int randNumber = aleatorio.nextInt(MAX - MIN + 1) + MIN;
             // check if the number is a fibonacci number
             for (int j = 0; fibonacciSequence(j) <= randNumber; j++) {
                 // if the number is a fibonacci number, add it to the array
@@ -45,8 +47,9 @@ class exercise2 {
             // convert the fibonacci number to binary
             binary[i] = binaryNumber(fibonacci[i]);
             // print the fibonacci number, its position and its binary number
-            System.out.printf("    %d           %d            %s", i + 1, fibonacci[i], binary[i] + "\n");
+            System.out.printf("|\t#%d\t\t|  %d\t\t|  %s\n", i + 1, fibonacci[i], binary[i]);
         }
+        System.out.println("|-------------------------------------------------------|");
     }
 
     public static long fibonacciSequence(int number) {
