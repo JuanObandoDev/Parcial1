@@ -8,23 +8,27 @@ import java.util.Random;
 
 class exercise3 {
     public static void main(String args[]) {
+        final int NUMS_COUNT = 100;
+        final String HEADER = "|\tPosition\t|  Number\t|  Binary\t|\n|-------------------------------------------------------|";
+        final int MAX = 10000;
+        final int MIN = 1;
         // create arrays
-        int[] nums = new int[100];
-        String[] binary = new String[100];
+        int[] nums = new int[NUMS_COUNT];
+        String[] binary = new String[NUMS_COUNT];
         // create instance of Random class
         Random aleatorio = new Random();
+        // print table header
+        System.out.println(HEADER);
         // generate 100 random numbers and show them on the screen
         for (int i = 0; i < nums.length; i++) {
-            // print table header
-            System.out.println((i == 0) ? "Position       Number          Binary" : "");
-            System.out.println((i == 0) ? "------------------------------------" : "");
             // generate random number
-            nums[i] = aleatorio.nextInt((10000 - 1) + 1) + 1;
+            nums[i] = aleatorio.nextInt(MAX - MIN + 1) + MIN;
             // get binary number from random number
             binary[i] = binaryNumber(nums[i]);
             // print table content (position, number, binary number)
-            System.out.println("/   " + (i + 1) + ".     /   " + nums[i] + "    /   " + binary[i] + " /");
+            System.out.printf("|\t#%d\t\t|  %d\t\t|  %s\n", i + 1, nums[i], binary[i]);
         }
+        System.out.println("|-------------------------------------------------------|");
     }
 
     public static String binaryNumber(long num) {
